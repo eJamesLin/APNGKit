@@ -64,7 +64,7 @@ class APNGImageTests: XCTestCase {
                            image!.frames![1].bytes.advanced(by: 3).pointee]
         XCTAssertEqual(frame1Pixel, [0x00, 0xff, 0x00, 0xff])
         
-        XCTAssertEqual(image?.repeatCount, RepeatForever, "The repeat count should be forever.")
+        XCTAssertEqual(image?.numberOfPlays, RepeatForever, "The repeat count should be forever.")
         XCTAssertEqual(image?.duration, 1.0, "Total duration is 1.0 sec")
         
         XCTAssertEqual(image?.frames![0].duration, 0.5, "The duration of a frame should be 0.5")
@@ -93,7 +93,7 @@ class APNGImageTests: XCTestCase {
                            frame1.bytes.advanced(by: 3).pointee]
         XCTAssertEqual(frame1Pixel, [0x00, 0xff, 0x00, 0xff])
         
-        XCTAssertEqual(image.repeatCount, RepeatForever, "The repeat count should be forever.")
+        XCTAssertEqual(image.numberOfPlays, RepeatForever, "The repeat count should be forever.")
         
         XCTAssertEqual(frame1.duration, 0.5, "The duration of a frame should be 0.5")
     }

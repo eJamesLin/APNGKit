@@ -56,7 +56,7 @@ open class APNGImage: NSObject { // For ObjC compatibility
     /// Repeat count of animation of the APNG image.
     /// It is read from APNG data. However, you can change it to modify the loop behaviors.
     /// Set this to `RepeatForever` will make the animation loops forever.
-    open var repeatCount: Int
+    open var numberOfPlays: Int
     
     let firstFrameHidden: Bool
     let bitDepth: Int
@@ -112,7 +112,7 @@ open class APNGImage: NSObject { // For ObjC compatibility
         self.internalSize = size
         self.scale = scale
         self.bitDepth = Int(meta.bitDepth)
-        self.repeatCount = Int(meta.playCount) - 1
+        self.numberOfPlays = Int(meta.playCount) - 1
         self.firstFrameHidden = meta.firstFrameHidden
         
         let metaFrameCount = Int(meta.frameCount)
@@ -155,7 +155,7 @@ open class APNGImage: NSObject { // For ObjC compatibility
         self.bitDepth = apng.bitDepth
         self.internalSize = apng.internalSize
         self.scale = apng.scale
-        self.repeatCount = apng.repeatCount
+        self.numberOfPlays = apng.numberOfPlays
         self.firstFrameHidden = apng.firstFrameHidden
         self.frameCount = apng.frameCount
     }
@@ -305,7 +305,7 @@ extension APNGImage {
         guard let frames = frames else {
             return ""
         }
-        var s = "<APNGImage: \(Unmanaged.passUnretained(self).toOpaque())> size: \(size), frameCount: \(frames.count), repeatCount: \(repeatCount)\n"
+        var s = "<APNGImage: \(Unmanaged.passUnretained(self).toOpaque())> size: \(size), frameCount: \(frames.count), repeatCount: \(numberOfPlays)\n"
         s += "["
         for f in frames {
             s += "\(f)\n"
